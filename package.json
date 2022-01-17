@@ -1,0 +1,44 @@
+{
+  "name": "@dawiidio/tools",
+  "version": "0.0.1",
+  "description": "@dawiidio helpers for js apps",
+  "main": "lib/node/index.js",
+  "module": "lib/browser/index.js",
+  "types": "lib/node/index.d.ts",
+  "scripts": {
+    "build:browser": "tsc -p ./tsconfig.browser.json && tsc-alias -p ./tsconfig.browser.json",
+    "build:node": "tsc -p ./tsconfig.node.json && tsc-alias -p ./tsconfig.node.json",
+    "build:indexes": "node scripts/generate-indexes.mjs",
+    "build": "npm run build:node && npm run build:browser && npm run build:indexes",
+    "prepublishOnly": "npm run build",
+    "start": "tsc -p ./tsconfig.node.json --watch",
+    "test": "vitest"
+  },
+  "author": {
+    "email": "dawid@dawiid.io",
+    "name": "Dawid Wojda",
+    "url": "https://dawiid.io/"
+  },
+  "license": "ISC",
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "dependencies": {
+    "chroma-js": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/chroma-js": "^2.1.4",
+    "@types/node": "^18.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.45.1",
+    "@typescript-eslint/parser": "^5.45.1",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "jsdom": "^19.0.0",
+    "tsc-alias": "^1.8.2",
+    "typescript": "^4.9.3",
+    "vite-tsconfig-paths": "^4.0.0",
+    "vitest": "^0.25.3"
+  }
+}
