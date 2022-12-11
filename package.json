@@ -5,6 +5,7 @@
   "main": "lib/node/index.js",
   "module": "lib/browser/index.js",
   "types": "lib/node/index.d.ts",
+  "private": false,
   "scripts": {
     "build:browser": "tsc -p ./tsconfig.browser.json && tsc-alias -p ./tsconfig.browser.json",
     "build:node": "tsc -p ./tsconfig.node.json && tsc-alias -p ./tsconfig.node.json",
@@ -40,5 +41,8 @@
     "typescript": "^4.9.3",
     "vite-tsconfig-paths": "^4.0.0",
     "vitest": "^0.25.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
