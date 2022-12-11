@@ -1,6 +1,6 @@
 {
   "name": "@dawiidio/tools",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "@dawiidio helpers for js apps",
   "main": "lib/node/index.js",
   "module": "lib/browser/index.js",
