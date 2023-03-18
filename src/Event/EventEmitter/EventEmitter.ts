@@ -47,4 +47,10 @@ export class EventEmitter {
             listeners.forEach((fn) => fn(eventName, data));
         }
     }
+
+    pipe(destinationEventEmitter: EventEmitter, prefix = ''): OffListener {
+        return this.on('*', (eventName, event) => {
+            destinationEventEmitter.trigger(`${prefix}${eventName}`, event);
+        })
+    }
 }
