@@ -51,5 +51,5 @@ describe('mergeArrays', () => {
                 id: 3
             },
         ]))
-    })
+    });
 });
