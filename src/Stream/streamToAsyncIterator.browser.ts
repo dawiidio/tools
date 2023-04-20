@@ -1,4 +1,4 @@
-export function streamToAsyncIterator<T = any>(
+export function streamToAsyncIteratorBrowser<T = any>(
     stream: ReadableStream,
 ): AsyncIterable<T> {
     return {
