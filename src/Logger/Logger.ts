@@ -61,7 +61,7 @@ export class Logger<LL extends ILogLevel = ILogLevel> {
     logLevel: number = LogLevel.error;
 
     messageParser: ILogMessageParser = (message: string, attrs: Partial<ILogAttributes>) => {
-        return `[${this.getLogLevelName(this.logLevel)}] ${message}`;
+        return `[${this.getLogLevelName(attrs.logLevel as ILogLevel)}] ${message}`;
     };
 
     setLogLevel(level: number | ILogLevel) {
