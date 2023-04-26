@@ -1,14 +1,21 @@
 type LevelsSeparator = '|';
 type MaximumAllowedLevelsInConfigString = 4;
 
-export enum LogLevel {
+export declare enum ILogLevel {
     debug = 8,
     info = 4,
     warn = 2,
     error = 1,
 }
 
-type LogLevelCombinedKeys = `${keyof typeof LogLevel}`;
+export const LogLevel: typeof ILogLevel = {
+    debug: 8,
+    info: 4,
+    warn: 2,
+    error: 1,
+} as const;
+
+type LogLevelCombinedKeys = `${keyof typeof ILogLevel}`;
 
 type Last<T extends string[]> = T extends [...infer _, infer Last] ? Last : never;
 
@@ -25,7 +32,7 @@ type Mapped<N extends number,
 export type ILoggerConfigString = Mapped<MaximumAllowedLevelsInConfigString>[number];
 
 export interface ILogAttributes {
-    logLevel: LogLevel;
+    logLevel: ILogLevel;
 }
 
 const DEFAULT_LOG_ATTRS: ILogAttributes = {
@@ -36,7 +43,7 @@ export type ILogMessageParser = (message: string, attrs: Partial<ILogAttributes>
 
 const LEVELS_SEPARATOR: LevelsSeparator = '|';
 
-export class Logger<LL extends LogLevel = LogLevel> {
+export class Logger<LL extends ILogLevel = ILogLevel> {
     static parseLogLevel(levels: ILoggerConfigString): number  {
         const levelsArray = levels.split(LEVELS_SEPARATOR) as (keyof typeof LogLevel)[];
         let acc = 0;
@@ -57,7 +64,7 @@ export class Logger<LL extends LogLevel = LogLevel> {
         return `[${this.getLogLevelName(this.logLevel)}] ${message}`;
     };
 
-    setLogLevel(level: number | LogLevel) {
+    setLogLevel(level: number | ILogLevel) {
         this.logLevel = level;
     }
 
