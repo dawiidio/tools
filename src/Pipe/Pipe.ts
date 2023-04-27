@@ -1,3 +1,4 @@
+// todo use IPipeTransformer instead of (val: any) => any
 export class Pipe<V = any> {
     constructor(private startValue: V) {
 
