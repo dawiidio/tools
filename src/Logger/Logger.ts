@@ -39,8 +39,6 @@ const DEFAULT_LOG_ATTRS: ILogAttributes = {
     logLevel: LogLevel.debug,
 };
 
-export type ILogMessageParser = (message: string, attrs: Partial<ILogAttributes>) => string;
-
 const LEVELS_SEPARATOR: LevelsSeparator = '|';
 
 export class Logger<LL extends ILogLevel = ILogLevel> {
@@ -60,7 +58,7 @@ export class Logger<LL extends ILogLevel = ILogLevel> {
 
     logLevel: number = LogLevel.error;
 
-    messageParser: ILogMessageParser = (message: string, attrs: Partial<ILogAttributes>) => {
+    parseMessage(message: string, attrs: Partial<ILogAttributes>): string {
         return `[${this.getLogLevelName(attrs.logLevel as ILogLevel)}] ${message}`;
     };
 
@@ -76,7 +74,7 @@ export class Logger<LL extends ILogLevel = ILogLevel> {
 
         if (attributes.logLevel & this.logLevel) {
             // eslint-disable-next-line no-console
-            console[this.getLogLevelName(attributes.logLevel)](this.messageParser(message, attributes));
+            console[this.getLogLevelName(attributes.logLevel)](this.parseMessage(message, attributes));
         }
     }
 
